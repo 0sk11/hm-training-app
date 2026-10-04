@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&display=swap');
+
+:root {
+  --ink: #2c3e50;
+  --ink-light: #34495e;
+  --paper: #f4f1ea;
+  --accent: #e74c3c;
+  --highlight: #f1c40f;
+  --success: #27ae60;
+  --faded: #bdc3c7;
+  --blue: #3498db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--paper);
+  background-image: 
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+    linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  font-family: 'Kalam', cursive;
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  font-family: 'Caveat', cursive;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+  text-decoration: underline;
+  text-decoration-color: var(--highlight);
+  text-decoration-style: solid;
+  text-decoration-thickness: 4px;
+}
+
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  text-decoration-color: var(--faded);
+  text-decoration-style: wavy;
+}
+
+.sketchy-box {
+  background: white;
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 20px;
+  box-shadow: 3px 4px 0 var(--ink);
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.sketchy-btn {
+  background: white;
+  font-family: 'Kalam', cursive;
+  font-size: 1.2rem;
+  border: 2px solid var(--ink);
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 2px 3px 0 var(--ink);
+  transition: all 0.1s ease;
+  color: var(--ink);
+}
+
+.sketchy-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.sketchy-btn:active {
+  transform: translate(2px, 3px);
+  box-shadow: 0px 0px 0 var(--ink);
+}
+
+.sketchy-btn.active {
+  background: var(--ink);
+  color: white;
+}
+
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.today-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.today-date {
+  font-size: 1.5rem;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+}
+
+.today-card {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1.2rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.status-badge.rest {
+  background: var(--blue);
+  color: white;
+}
+.status-badge.run {
+  background: var(--accent);
+  color: white;
+}
+.status-badge.trek {
+  background: var(--success);
+  color: white;
+}
+
+/* Calendar Month Layout */
+.calendar-month {
+  margin-bottom: 40px;
+}
+.calendar-month h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+}
+.calendar-grid-month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day-cell {
+  border: 1px dashed var(--ink-light);
+  border-radius: 8px 12px 10px 8px/12px 8px 10px 8px;
+  min-height: 60px;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+  background: white;
+  transition: all 0.1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar-day-cell:hover {
+  transform: scale(1.05) rotate(1deg);
+  border-style: solid;
+}
+
+.calendar-day-cell.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.calendar-day-cell.empty:hover {
+  transform: none;
+}
+
+.calendar-day-cell.has-event {
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.calendar-day-cell.completed {
+  background: #e8f8f5;
+}
+.calendar-day-cell.completed::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  color: rgba(39, 174, 96, 0.4);
+  font-family: sans-serif;
+  pointer-events: none;
+}
+
+.calendar-day-cell.missed {
+  background: #fadbd8;
+}
+.calendar-day-cell.missed::after {
+  content: '✕';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  color: rgba(231, 76, 60, 0.4);
+  font-family: sans-serif;
+  pointer-events: none;
+}
+
+.calendar-day-cell.selected {
+  background: var(--highlight);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.cal-day-num {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cal-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: auto;
+  margin-bottom: 5px;
+  border: 1px solid var(--ink);
+}
+.cal-indicator.run { background: var(--accent); }
+.cal-indicator.trek { background: var(--success); }
+.cal-indicator.rest { background: var(--blue); }
+
+.cal-checkin-badge {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  background: var(--highlight);
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.calendar-day-cell.checkin-day {
+  border: 2px solid var(--highlight);
+}
+
+.check-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 4px 10px 4px 8px/8px 4px 10px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.custom-checkbox.checked {
+  background: var(--success);
+}
+.custom-checkbox.checked::after {
+  content: '✓';
+  color: white;
+  font-family: sans-serif;
+}
+
+.progress-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.progress-bar-outline {
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--highlight),
+    var(--highlight) 10px,
+    #f39c12 10px,
+    #f39c12 20px
+  );
+  transition: width 0.5s ease;
+}
+
+.details-list {
+  text-align: left;
+  margin-top: 5px;
+  padding-left: 20px;
+}
+.details-list li {
+  margin-bottom: 5px;
+}
