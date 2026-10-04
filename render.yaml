@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: hm-training-app
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
